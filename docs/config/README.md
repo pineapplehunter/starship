@@ -839,7 +839,6 @@ the following files are present in the current directory:
 - `Directory.Build.props`
 - `Directory.Build.targets`
 - `Packages.props`
-- `*.sln`
 - `*.csproj`
 - `*.fsproj`
 - `*.xproj`
@@ -863,7 +862,7 @@ when there is a csproj file in the current directory.
 | `version_format`    | `"v${raw}"`                                                                                             | The version format. Available vars are `raw`, `major`, `minor`, & `patch` |
 | `symbol`            | `".NET "`                                                                                               | The symbol used before displaying the version of dotnet.                  |
 | `heuristic`         | `true`                                                                                                  | Use faster version detection to keep starship snappy.                     |
-| `detect_extensions` | `["sln", "csproj", "fsproj", "xproj"]`                                                                  | Which extensions should trigger this module.                              |
+| `detect_extensions` | `["csproj", "fsproj", "xproj"]`                                                                  | Which extensions should trigger this module.                              |
 | `detect_files`      | `["global.json", "project.json", "Directory.Build.props", "Directory.Build.targets", "Packages.props"]` | Which filenames should trigger this module.                               |
 | `detect_folders`    | `[]`                                                                                                    | Which folders should trigger this modules.                                |
 | `style`             | `"bold blue"`                                                                                           | The style for the module.                                                 |
@@ -3025,6 +3024,7 @@ These modules will be shown if any of the following conditions are met:
 - The current directory contains a directory whose name is in `directories`
 - The current directory contains a file whose extension is in `extensions`
 - The `when` command returns 0
+- The current Operating System (std::env::consts::OS) matchs with `os` field if defined.
 
 ::: tip
 
@@ -3061,7 +3061,8 @@ If you have an interesting example not covered there, feel free to share it ther
 | `symbol`      | `""`                            | The symbol used before displaying the command output.                                                                      |
 | `style`       | `"bold green"`                  | The style for the module.                                                                                                  |
 | `format`      | `"[$symbol($output )]($style)"` | The format for the module.                                                                                                 |
-| `disabled`    | `false`                         | Disables this `custom` module.                                                                                             |
+| `disabled`    | `false`                         | Disables this `custom` module.                      |
+| `os`          |                                 | Operating System name on which the module will be shown (unix, linux, macos, windows, ... ) [See possible values](https://doc.rust-lang.org/std/env/consts/constant.OS.html). |
 
 ### Variables
 
